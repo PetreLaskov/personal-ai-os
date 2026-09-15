@@ -1,147 +1,128 @@
-# Personal AI OS
+# Cyborgism: building continuity into human–AI work
 
-> A private operating system for high-agency, durable collaboration with AI agents.
+A conversation can produce a good idea and still leave almost nothing usable behind. The reasoning sits halfway up a transcript. A decision loses its conditions. The next session begins with another explanation of what the project is, what has already been tried, and why the obvious suggestion will not work.
 
-**Selected project · Human–AI collaboration · Agent operations · Context architecture**
+Cyborgism is my continuing exploration of that gap between a useful conversation and useful work over time. Its latest iteration is **Corpus**, a small, persistent collaboration hub. Alongside it, I have developed a **knowledge compiler**: a way to turn source material into revisable, traceable working knowledge.
 
-This repository is a public architecture case study of my personal AI operating system. It explains how I work with agents across real projects without publishing the private corpus, instructions, history, or personal material that powers it.
+Together, these address two different forms of continuity. Corpus preserves the collaboration: decisions, questions, disagreements and working preferences. The knowledge compiler preserves the evidence and understanding that the work depends on.
 
-## Why I built it
+My background is in psychology and research project management. That makes the organisation of attention as interesting to me as the model's capabilities. Which question gets asked? What counts as evidence? When does exploration become a decision? These are partly philosophical questions, but an interface has to answer them in practice. Its defaults will answer them even if its designer does not.
 
-AI models are powerful but discontinuous collaborators. Sessions end, context disappears, model capability changes, and confident completion can be easier to produce than demonstrated completion. A chat history alone does not solve that problem; it preserves conversation, not necessarily judgment.
+## From specialised roles to a smaller hub
 
-I built Personal AI OS so the collaboration itself can improve over time. Decisions retain their reasons. Open questions survive context resets. Agent disagreement becomes calibration data. Repeated corrections can become reusable operating rules. Useful procedures are promoted only after they prove themselves under real work.
+Earlier Cyborgism versions organised work into specialised modes for investigation, curation, synthesis, strategy and delivery. They used Markdown instructions, named owners for state files, session procedures and Git history.
 
-The goal is not maximum automation. The goal is a collaboration in which the agent becomes more useful while my own judgment, authorship, and directing skill become stronger rather than weaker.
+There was a useful idea behind that structure: different work needs different kinds of attention. A half-formed question benefits from patient exploration. A defended claim needs an objection with substance. An agreed project needs execution. The ability to suggest a different plan does not imply authority to replace the existing one.
 
-## Operating model
+Corpus carries these concerns forward with a lighter centre. It asks what must survive between sessions and gives each kind of record a clear place. Its core is a short collaboration contract, a decision journal, open questions, a disagreement ledger and a current handoff. Procedures are added when a recurring need earns them a place.
 
-The architecture has three parts:
+The model is the replaceable participant in this arrangement. Between sessions, continuity lives in what has been recorded and in what I have learned. That shifts the design question from “How do I give the assistant a larger memory?” to “What should the next collaborator be able to recover?”
 
-- **Stock** — human-owned, model-legible context that compounds: principles, decisions with reasons, open questions, current state, calibrated predictions, and earned procedures.
-- **Loop** — a repeatable session lifecycle: orient, route, collaborate, verify, deposit, and periodically review.
-- **Governor** — explicit boundaries for authorship, delegation, dissent, reversibility, privacy, and decisions that must remain human.
+## What Corpus keeps
 
-```mermaid
-flowchart LR
-    A[Cold session] --> B[Orient to state<br/>and constraints]
-    B --> C[Route the work<br/>by judgment required]
-    C --> D[Human-agent<br/>collaboration]
-    D --> E[Verify against<br/>observable evidence]
-    E --> F[Deposit decisions,<br/>questions, and handoff]
-    F --> G[Durable<br/>human-owned context]
-    G --> A
+The implementation is an ordinary local repository. It contains instructions for Claude Code and a corresponding agent contract for Codex. Its records are readable without either tool.
 
-    H[Periodic review:<br/>calibrate, promote, prune] --> G
-    G --> H
-    I[Human authority<br/>at consequential forks] --- C
-    I --- D
-    I --- E
+| Record | What it preserves |
+|---|---|
+| Collaboration contract | Working preferences, decision boundaries and agreed procedures |
+| Decision journal | Decisions, their reasons and what changed when a previous decision was revised |
+| Open questions | Unresolved issues and pointers to what eventually settled them |
+| Disagreement ledger | Significant objections or predictions, when to check them, and their resolution |
+| Handoff | Current state, next moves and risks for a fresh session |
+| Skills | Reusable procedures that have earned a place in the work |
+
+A decision journal and a handoff do different jobs. The journal preserves how we arrived here. The handoff tells a new session where “here” is. Making the handoff concise need not require erasing the reasoning behind it.
+
+Other projects can opt into the hub by pointing their local instructions to it. Their code and working documents remain in their own repositories. Corpus supplies continuity across them. This is an explicit reading-and-writing convention, rather than a background service that automatically synchronises every project.
+
+## Give disagreement a future
+
+A model can agree too readily. Asking it to disagree can produce the opposite performance: objections that exist because the instructions demand an objection.
+
+Corpus's pushback procedure gives consequential disagreement a more useful shape. First state the strongest recognisable version of my position. If that dissolves the objection, stop. Otherwise explain the disagreement, name the observation that would settle it, and record a check date.
+
+The decision remains mine. The disagreement remains available for later examination.
+
+Consider a fictional software decision. I want to build an importer; the assistant argues that recurring manual preparation will cost more than the automation saves. Recording “the assistant was sceptical” would add little. Recording the expected preparation burden, the condition under which the importer becomes worthwhile, and a date to compare that expectation with actual use gives the disagreement somewhere to go.
+
+This does not make the ledger a calibrated forecasting system by itself. It creates the record from which calibration becomes possible. A persuasive objection can be wrong, and a rejected objection can later turn out to have been useful.
+
+## End sessions with a deposit, not another essay
+
+Corpus's session-close procedure separates the records it updates:
+
+- Append decisions with their reasons to the journal.
+- Add or resolve open questions.
+- Record significant predictions or disagreements in the ledger.
+- Rewrite the handoff for a fresh session.
+- Propose a standing rule only when the friction warrants one.
+
+The procedure gives this work a five-minute budget. That is a chosen constraint, not a measured optimum. If nothing substantive happened, the instruction is to deposit nothing.
+
+Reviews are intended to remove rules as well as add them. A local request should not silently become a permanent instruction. A rule that made sense with one model or task may obstruct the next. Corpus therefore dates its standing lines and asks them to justify their continued presence.
+
+This is one of the more important changes in the project. A working environment can accumulate procedure until maintaining it becomes the work. Corpus makes subtraction part of the design.
+
+## The knowledge compiler: an evidence layer
+
+Continuity of conversation is only half the problem. Research also needs continuity of understanding. A folder of articles preserves material, but each new question can require the same reading and synthesis again.
+
+The knowledge compiler is the evidence layer in the broader Cyborgism work. It is implemented as a separate portable Markdown project, with operating procedures and a Python validator. It can be used alongside the collaboration hub; I do not treat it as an automatically connected service.
+
+Its basic separation is between preserved sources and compiled understanding:
+
+```text
+Raw source snapshot
+        |
+        v
+Source ledger: identifiable claims + precise locations
+        |
+        v
+Pages that own the current conclusions
+        |
+        v
+Question-based routing -> answer -> inspect evidence
 ```
 
-This makes continuity independent of any single chat or model. A capable agent can enter cold, load the minimum relevant state, understand how the work is divided, and continue without pretending to remember what it does not.
+A project begins with a charter: what questions should this collection help answer, which evidence matters, and where are its boundaries? That purpose determines what deserves compilation. An unfamiliar source does not automatically justify a new page.
 
-## How I interact with agents
+The source layer retains snapshots and content hashes. A source ledger assigns stable identifiers to statements and points back to their locations in the original. Compiled pages maintain the current conclusions, with one canonical home for each claim. A compact index routes recurring questions to the relevant material.
 
-### I use agents as senior collaborators, not oracles
+The distinction between a source statement and a conclusion matters. A source may report an observation. The compiled page may draw an inference from it. Keeping the two connected without treating them as identical lets a reader examine the step between evidence and interpretation.
 
-Agreement has to be earned. The agent is expected to surface the strongest objection, state uncertainty, and distinguish evidence from inference. Automatic deference and performative contrarianism are treated as the same failure in opposite directions.
+## Updating understanding is more than adding a citation
 
-### I specify outcomes and boundaries before activity
+Suppose a fictional research collection concludes that a method works well for small teams. A later source limits that finding to teams with dedicated administrative support. Adding the new source to the bibliography leaves the old answer wrong in an important way.
 
-A substantive session begins by naming the objective, what completion looks like, what is out of scope, and which decisions require me. This reduces hidden assumptions without forcing me to micromanage every implementation step.
+The compiler's ingestion procedure asks what changes: does the source introduce, confirm, qualify or challenge a claim? A qualification belongs in the page that owns the conclusion. Answers and recommendations depending on that conclusion also need review. An unchanged conclusion can legitimately produce little new text.
 
-### I keep judgment and delegate leverage
+The same discipline applies to source independence. Five articles repeating one study are not five independent tests. The compiler's evidence procedures ask the reader or agent to track that relationship rather than infer strength from citation count.
 
-Research conclusions, core arguments, taste, architecture, and consequential choices stay routed through me. Agents take more of the implementation, long reads, comparison sweeps, transformations, verification, and operational follow-through. Delegation is a contract with bounded scope and explicit completion criteria.
+The Python validator checks mechanical properties, including supported metadata, source hashes and link and claim-reference resolution. Those checks make defects visible. Whether the source supports the conclusion remains a reasoning task. A correctly resolved citation can still be attached to a bad inference.
 
-### I require demonstrated completion
+For interrupted work, a checkpoint records the unfinished update. The next session reconciles that record with the files before treating the compilation as complete. This is the evidence-side equivalent of Corpus's handoff: preserve enough state to resume without assuming the previous session finished everything it intended.
 
-“Should work” is not a completion state. Technical work is reproduced before it is changed, retries must change a variable, and finished work carries observable evidence: tests, output, state inspection, or an explicit unverified label.
+## Two kinds of memory, one working practice
 
-### I turn disagreement into calibration
+Corpus and the compiler should meet at the task, without collapsing into one undifferentiated store.
 
-Consequential dissent is not lost in the conversation. The claim, confidence, settling observation, and review point are preserved. Later outcomes calibrate both the agent’s judgment and my own without confusing a lucky outcome for a good decision process.
+For a research assignment, Corpus can preserve the agreed question, the reason for choosing it and the next decision. The compiler can hold the relevant sources, the current synthesis and the evidence behind it. A new session needs access to both, but should be able to distinguish an agreement about the work from a claim about the world.
 
-### I let process earn permanence
+That distinction also limits what “memory” is allowed to mean. A suggestion is not an accepted decision. A repeated assertion is not independent evidence. A fluent summary is not proof that the underlying material has been understood.
 
-Session-specific instructions do not silently become permanent policy. A correction that recurs can be proposed as a standing rule. A procedure that repeatedly proves useful can become a reusable skill. Rules and skills that stop affecting behavior are pruned. Subtraction is a sign that the system is learning.
+I think of the larger project as an experiment in distributed cognition: useful thinking taking place across a person, a model and external records. The question is how that arrangement changes our ability to notice, decide, revise and act.
 
-## System responsibilities
+Its philosophical depth shows up in practical choices. Who can turn a suggestion into standing state? What would change a conclusion? Which part of the work should I continue doing myself? Can I leave the system and still understand the reasons for my decisions?
 
-| Area | What the OS provides |
-|---|---|
-| Session continuity | A cold-start orientation and concise handoff state instead of dependence on chat history. |
-| Context engineering | Layered, project-scoped context that loads only where it is relevant. |
-| Cognitive routing | Explicit division between human judgment, agent judgment, and delegable mechanical work. |
-| Agent delegation | Bounded tasks, non-overlapping responsibilities, defined tradeoffs, and verifiable done criteria. |
-| Quality control | Reproduction before intervention, evidence-backed completion, and explicit uncertainty. |
-| Model routing | Stronger models for judgment and synthesis; cheaper models or subagents for bounded bulk work. |
-| Durable memory | Decisions with reasons, unresolved questions, current commitments, and learned corrections. |
-| Calibration | Predictions and disagreements revisited against later evidence. |
-| Adaptation | Repeated behavior becomes procedure; unused scaffolding is removed during review. |
-| Human development | Automation is routed so important human capabilities do not atrophy. |
+The current implementation provides inspectable answers to some of these questions: readable files, explicit decision boundaries, revisable records, evidence trails and deliberate handovers. Its effect on productivity and judgment still has to be tested against real work. The compiler likewise has to earn its maintenance cost against the simpler alternative of sources plus search.
 
-## Design choices that matter
-
-### Opt-in context, not global personality
-
-The global model remains largely unmodified. Projects opt into the OS when continuity and compounding matter. This keeps unrelated tasks clean and prevents personal context from leaking into every interaction.
-
-### Memory is curated state, not exhaustive history
-
-The system does not try to save everything. It preserves what future work needs: decisions and reasons, open forks, active state, corrections, and procedures with demonstrated value. Raw conversation is not treated as durable knowledge by default.
-
-### Scaffolding follows observed failure
-
-Constraints are added when real work reveals a recurring gap, not because an elaborate agent framework looks impressive. More capable models can operate with less procedure; weaker models inherit explicit checks that preserve reliable behavior.
-
-### Human skill is part of the objective function
-
-A workflow can be efficient while making its operator less capable. The OS therefore routes work partly according to which abilities I want to preserve: reasoning, writing, learning, taste, architecture, and consequential decision-making.
-
-## What this project demonstrates
-
-- Persistent context architecture for stateless AI sessions
-- Practical human–agent delegation and control boundaries
-- Agent instructions that adapt across model capability levels
-- Cross-model integration for Claude Code and Codex
-- Reusable agent skills and project-scoped operating rules
-- Verification-oriented technical collaboration
-- Decision journaling, prediction tracking, and calibration loops
-- Privacy-aware memory and context isolation
-- Continuous improvement through promotion and pruning
-- An operator model for using AI without surrendering authorship
-
-This is not a chatbot wrapper, an agent swarm, or a productivity dashboard. It is a maintained collaboration layer around probabilistic systems, designed to make real work compound across sessions.
-
-## Relationship to Harness Engine
-
-These projects show two sides of my agent-systems work:
-
-- **Personal AI OS** is the operator layer: how I personally direct, challenge, verify, and learn with AI agents across ongoing work.
-- **[Harness Engine](https://github.com/PetreLaskov/harness-engine)** is the platform layer: how I design grounded, personalized agent environments as maintainable systems.
-
-One is the lived operating practice; the other is the system-building discipline derived from that practice.
-
-## Public boundary
-
-This showcase intentionally excludes:
-
-- Personal profile, journal, priorities, questions, and current work state
-- Conversation history, handoffs, applications, and private project material
-- Agent instructions, skill implementations, prompts, and model-specific adapters
-- Internal schemas, automation, file layout, and operational commands
-- Private repository history, paths, identities, and calibration records
-
-The public repository communicates the architecture and my working method. It is not a distribution of the OS and cannot reconstruct the private system.
-
-## Project status
-
-Personal AI OS is active private infrastructure used across software delivery, research, writing, learning, and business work. It evolves from observed collaboration failures and useful recurring behaviors rather than speculative feature growth.
-
-Built and maintained by [Petre Laskov](https://github.com/PetreLaskov).
+The standard I want to hold the whole arrangement to is simple: when I return, I should be able to recover the important context, see what still needs judgment, and get on with something worth doing.
 
 ---
+
+**Technical basis:** earlier Cyborgism configuration and agent protocols; Corpus's repository contract, guide, deposit and pushback procedures; and the Knowledge Compiler's source, ingestion, routing and validation design. Examples and diagrams are simplified illustrations. Companion piece: [The Harness Engine](https://github.com/PetreLaskov/harness-engine).
+
+
+By [Petre Laskov](https://github.com/PetreLaskov). Developed and written with AI assistance.
 
 © 2026 Petre Laskov. Shared for portfolio and evaluation purposes. All rights reserved.
