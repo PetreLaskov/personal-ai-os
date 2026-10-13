@@ -1,5 +1,11 @@
 # Cyborgism: building continuity into human–AI work
 
+## Cyborgism: cognition, partnership, agency
+
+Cyborgism is my inquiry into **extended and distributed cognition**: thinking that takes place across a person, AI agents, and a shared body of knowledge. Its central tension is that I want AI to extend my mind while remaining capable of meeting me as something other than a reflection of it. A perfectly agreeable extension would carry my blind spots further; a thinking partner must be able to bring something I did not put in. From the early vault contracts through Cyborgism 1–4, Corpus, and Workspace OS, I have explored this as human–AI partnership: holding complexity beyond one working memory, letting past and present thinking meet, and allowing new questions and possibilities to emerge through encounter with another kind of mind.
+
+This makes **agency in an age of agents** a practical philosophical question. If an agent can help frame the problem, imagine the alternatives, and carry out the work, human agency has to include learning how to participate in that larger system: exercising judgment, discovering and revising purposes, and becoming more capable through the collaboration. The OS gives that partnership a place to develop: shared context, working agreements, decisions, disagreements, and open questions that we can take up again across sessions. The ambition is a continuing practice of inquiry, creation, and action in which both the understanding and the human participant can develop.
+
 A conversation can produce a good idea and still leave almost nothing usable behind. The reasoning sits halfway up a transcript. A decision loses its conditions. The next session begins with another explanation of what the project is, what has already been tried, and why the obvious suggestion will not work.
 
 Cyborgism is my continuing exploration of that gap between a useful conversation and useful work over time. Its latest iteration is **Corpus**, a small, persistent collaboration hub. Alongside it, I have developed a **knowledge compiler**: a way to turn source material into revisable, traceable working knowledge.
