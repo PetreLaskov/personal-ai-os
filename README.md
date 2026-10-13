@@ -8,25 +8,35 @@ This makes **agency in an age of agents** a practical philosophical question. If
 
 A conversation can produce a good idea and still leave almost nothing usable behind. The reasoning sits halfway up a transcript. A decision loses its conditions. The next session begins with another explanation of what the project is, what has already been tried, and why the obvious suggestion will not work.
 
-Cyborgism is my continuing exploration of that gap between a useful conversation and useful work over time. Its latest iteration is **Corpus**, a small, persistent collaboration hub. Alongside it, I have developed a **knowledge compiler**: a way to turn source material into revisable, traceable working knowledge.
+Cyborgism is my continuing exploration of human–AI partnership in practice. Its current iteration is **Workspace OS**, the environment in which I now work with Codex: a central home for open inquiry, direction, choosing and revising commitments, coordinating projects, and improving the collaboration itself. It carries forward earlier experiments, including **Corpus**, while leaving sustained subject work with specialist projects.
 
-Together, these address two different forms of continuity. Corpus preserves the collaboration: decisions, questions, disagreements and working preferences. The knowledge compiler preserves the evidence and understanding that the work depends on.
+Alongside it, [**Knowledge Compiler**](https://github.com/PetreLaskov/wiki-template) turns selected source material into revisable, traceable working understanding. The two meet around a question worth pursuing: Workspace OS helps establish why it matters and how to carry it forward; a compiler instance helps recover what the sources say, what we currently think follows, and what new evidence changes. A specialist project owns the detailed work. Their connection is made through deliberate reading, writing, and handoffs.
 
 My background is in psychology and research project management. That makes the organisation of attention as interesting to me as the model's capabilities. Which question gets asked? What counts as evidence? When does exploration become a decision? These are partly philosophical questions, but an interface has to answer them in practice. Its defaults will answer them even if its designer does not.
 
-## From specialised roles to a smaller hub
+## Current practice: Workspace OS
+
+The working agreement starts with a division of responsibility. I retain authority over commitments, values, experience, and public claims. The agent contributes substantive thought, alternatives, arguments, research, practical work, and continuity. That includes real disagreement and help reconsidering the direction. Protecting an intention can mean helping revise or relinquish it.
+
+This gives the philosophical inquiry practical consequences. An elegant formulation remains answerable to evidence, experience, argument, and my response. An earlier enthusiasm does not become a permanent obligation. Open inquiry can remain open; a meaningful encounter need not become a task or an artifact. The environment also attends to attention, sustainable pace, and the conditions under which the work remains worth doing.
+
+The persistent record is small: a collaboration agreement, current state, a project map, and dated decisions with reasons. The agent maintains useful return points at natural boundaries. Specialist projects keep their own sources, artifacts, standards, and detailed state. A handoff carries the question, relevant material, adopted decisions, uncertainties, and requested result. General agreements travel only where relevant; pointing to a project does not automatically load its context or authorize action there.
+
+The test of the arrangement is whether it helps me return, choose, understand, work, and stop. The contract remains open to revision through use.
+
+## Earlier iterations: specialised roles and Corpus
 
 Earlier Cyborgism versions organised work into specialised modes for investigation, curation, synthesis, strategy and delivery. They used Markdown instructions, named owners for state files, session procedures and Git history.
 
 There was a useful idea behind that structure: different work needs different kinds of attention. A half-formed question benefits from patient exploration. A defended claim needs an objection with substance. An agreed project needs execution. The ability to suggest a different plan does not imply authority to replace the existing one.
 
-Corpus carries these concerns forward with a lighter centre. It asks what must survive between sessions and gives each kind of record a clear place. Its core is a short collaboration contract, a decision journal, open questions, a disagreement ledger and a current handoff. Procedures are added when a recurring need earns them a place.
+Corpus carried these concerns forward with a lighter centre. It asks what must survive between sessions and gives each kind of record a clear place. Its core is a short collaboration contract, a decision journal, open questions, a disagreement ledger and a current handoff. Procedures are added when a recurring need earns them a place.
 
 The model is the replaceable participant in this arrangement. Between sessions, continuity lives in what has been recorded and in what I have learned. That shifts the design question from “How do I give the assistant a larger memory?” to “What should the next collaborator be able to recover?”
 
-## What Corpus keeps
+### What Corpus kept
 
-The implementation is an ordinary local repository. It contains instructions for Claude Code and a corresponding agent contract for Codex. Its records are readable without either tool.
+Corpus's implementation is an ordinary local repository, retained as an earlier design. It contains instructions for Claude Code and a corresponding agent contract for Codex. Its records are readable without either tool; its procedures are historical reference rather than the current Workspace OS contract.
 
 | Record | What it preserves |
 |---|---|
@@ -41,7 +51,7 @@ A decision journal and a handoff do different jobs. The journal preserves how we
 
 Other projects can opt into the hub by pointing their local instructions to it. Their code and working documents remain in their own repositories. Corpus supplies continuity across them. This is an explicit reading-and-writing convention, rather than a background service that automatically synchronises every project.
 
-## Give disagreement a future
+### Give disagreement a future
 
 A model can agree too readily. Asking it to disagree can produce the opposite performance: objections that exist because the instructions demand an objection.
 
@@ -53,7 +63,7 @@ Consider a fictional software decision. I want to build an importer; the assista
 
 This does not make the ledger a calibrated forecasting system by itself. It creates the record from which calibration becomes possible. A persuasive objection can be wrong, and a rejected objection can later turn out to have been useful.
 
-## End sessions with a deposit, not another essay
+### End sessions with a deposit, not another essay
 
 Corpus's session-close procedure separates the records it updates:
 
@@ -67,13 +77,13 @@ The procedure gives this work a five-minute budget. That is a chosen constraint,
 
 Reviews are intended to remove rules as well as add them. A local request should not silently become a permanent instruction. A rule that made sense with one model or task may obstruct the next. Corpus therefore dates its standing lines and asks them to justify their continued presence.
 
-This is one of the more important changes in the project. A working environment can accumulate procedure until maintaining it becomes the work. Corpus makes subtraction part of the design.
+This was an important step in the project. A working environment can accumulate procedure until maintaining it becomes the work. Corpus made subtraction part of the design; Workspace OS continues that principle in its current agreement.
 
-## The knowledge compiler: an evidence layer
+## Knowledge Compiler: a companion for sustained inquiry
 
 Continuity of conversation is only half the problem. Research also needs continuity of understanding. A folder of articles preserves material, but each new question can require the same reading and synthesis again.
 
-The knowledge compiler is the evidence layer in the broader Cyborgism work. It is implemented as a separate portable Markdown project, with operating procedures and a Python validator. It can be used alongside the collaboration hub; I do not treat it as an automatically connected service.
+[Knowledge Compiler](https://github.com/PetreLaskov/wiki-template) is a separate, reusable Markdown project with an agent contract, a Python toolkit, and a worked correction example. A specialist can use an instance for a body of material it expects to revisit. The OS and compiler have distinct responsibilities: an agreement about what we intend to do is different from evidence about what is true. Neither file system automatically synchronizes with the other.
 
 Its basic separation is between preserved sources and compiled understanding:
 
@@ -108,11 +118,15 @@ The Python validator checks mechanical properties, including supported metadata,
 
 For interrupted work, a checkpoint records the unfinished update. The next session reconciles that record with the files before treating the compilation as complete. This is the evidence-side equivalent of Corpus's handoff: preserve enough state to resume without assuming the previous session finished everything it intended.
 
-## Two kinds of memory, one working practice
+## How the OS and compiler work together
 
-Corpus and the compiler should meet at the task, without collapsing into one undifferentiated store.
+Workspace OS holds direction and coordination; a specialist project owns the undertaking; a compiler instance can maintain the evidence and developing understanding within it. This is a way to connect the work while giving each record a clear owner.
 
-For a research assignment, Corpus can preserve the agreed question, the reason for choosing it and the next decision. The compiler can hold the relevant sources, the current synthesis and the evidence behind it. A new session needs access to both, but should be able to distinguish an agreement about the work from a claim about the world.
+For example, a research assignment might begin in Workspace OS with a question and a reason for pursuing it. The relevant specialist takes up the investigation, using its compiler to preserve sources, develop explanations, and track unresolved questions. If a correction changes the evidence, the compiler's conclusions need review; if that changes the reason for a commitment, the relevant decision also needs reconsideration. The agent carries that consequence back to the project or Workspace OS. It is a deliberate reasoning step, not automatic propagation between systems.
+
+The resulting handoff can point to the evidence without copying the whole collection. A later session can recover both why we chose the work and what currently supports its conclusions. For a brief inquiry, reading the sources directly may be enough; maintaining a compiler has to earn its place.
+
+[Inspect the compiler](https://github.com/PetreLaskov/wiki-template) · [Follow its fictional correction example](https://github.com/PetreLaskov/wiki-template/tree/master/examples/lumen)
 
 That distinction also limits what “memory” is allowed to mean. A suggestion is not an accepted decision. A repeated assertion is not independent evidence. A fluent summary is not proof that the underlying material has been understood.
 
@@ -126,7 +140,7 @@ The standard I want to hold the whole arrangement to is simple: when I return, I
 
 ---
 
-**Technical basis:** earlier Cyborgism configuration and agent protocols; Corpus's repository contract, guide, deposit and pushback procedures; and the Knowledge Compiler's source, ingestion, routing and validation design. Examples and diagrams are simplified illustrations. Companion piece: [The Harness Engine](https://github.com/PetreLaskov/harness-engine).
+**Technical basis:** the current Workspace OS collaboration agreement and design; earlier Cyborgism configuration and agent protocols; Corpus's historical contract, guide, deposit and pushback procedures; and the [Knowledge Compiler](https://github.com/PetreLaskov/wiki-template)'s source, ingestion, routing and validation design. Examples and diagrams are simplified illustrations. Companion piece: [The Harness Engine](https://github.com/PetreLaskov/harness-engine).
 
 
 By [Petre Laskov](https://github.com/PetreLaskov). Developed and written with AI assistance.
